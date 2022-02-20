@@ -12,7 +12,8 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const findOrCreate = require("mongoose-findorcreate");
 
 const app = express();
-
+const port = process.env.PORT || 3000;
+const uri = process.env.MONGODB_URI;
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -28,7 +29,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(uri || "mongodb://localhost:27017/userDB", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
@@ -183,6 +184,6 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("server is rumming on port 3000");
+app.listen(port, () => {
+  console.log(`server started on port ${port}`);
 });
