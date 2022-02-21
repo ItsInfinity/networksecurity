@@ -62,7 +62,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: port + "/auth/google/secrets",
+      // callbackURL: port + "/auth/google/secrets",
+      callbackURL: "https://secrets-app-123.herokuapp.com/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
