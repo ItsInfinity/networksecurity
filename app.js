@@ -63,7 +63,8 @@ passport.use(
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
       // callbackURL: port + "/auth/google/secrets",
-      callbackURL: "https://secrets-app-123.herokuapp.com/auth/google/secrets",
+      callbackURL:
+        "https://secrets-app-123.herokuapp.com/auth/google/secrets" || "http://localhost:3000/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ googleId: profile.id }, function (err, user) {
@@ -77,7 +78,9 @@ passport.use(
     {
       clientID: process.env.FB_CLIENT_ID,
       clientSecret: process.env.FB_CLIENT_SECRET,
-      callbackURL: port + "/auth/facebook/secrets",
+      //callbackURL: port + "/auth/facebook/secrets",
+      callbackURL:
+        "https://secrets-app-123.herokuapp.com/auth/google/secrets" || "http://localhost:3000/auth/google/secrets",
     },
     function (accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ facebookId: profile.id }, function (err, user) {
