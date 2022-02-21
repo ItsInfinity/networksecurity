@@ -86,6 +86,7 @@ passport.use(
   )
 );
 app.get("/", (req, res) => {
+  console.log(port);
   res.render("home");
 });
 
